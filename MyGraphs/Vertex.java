@@ -13,4 +13,9 @@ public class Vertex{
     {
         return city;
     }
+
+    public String toString()
+    {
+        return city;
+    }
 }

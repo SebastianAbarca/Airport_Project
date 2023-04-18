@@ -1,23 +1,5 @@
-import MyGraphs.Vertex; 
-
-public class Paths {
-
-    String departure, arrival;
-    int time;
-
-    public Paths(String departure, String arrival, int time)
-    {
-        this.departure = departure;
-        this.arrival = arrival;
-        this.time = time;
-    }
-
-
-
-
-    
-}
-
+package Path;
+import MyGraphs.Vertex;
 
 public class PathVertex extends Vertex
 {

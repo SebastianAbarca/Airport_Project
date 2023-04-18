@@ -2,8 +2,8 @@ package MyGraphs;
 
 public class Edge 
 {
-    Vertex departure, dest;
-    int time;
+    public Vertex departure, dest;
+    public int time;
 
     public Edge(Vertex departure, Vertex dest, int weight)
     {
