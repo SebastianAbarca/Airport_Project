@@ -1,5 +1,3 @@
-import org.apache.xmlbeans.impl.xb.xsdschema.Public;
-
 import java.util.*;
 import java.io.*;
 public class Startup
@@ -18,6 +16,7 @@ public class Startup
         System.out.println("What is your last name?");
         name = scnr.next();
         writer.println(name);
+        writer.println("Eren");
     }
     }
 }
