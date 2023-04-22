@@ -22,6 +22,16 @@ public class Paths {
         time = Integer.MAX_VALUE;
     }
 
+    public ArrayList<Vertex> getPath()
+    {
+        return path;
+    }
+
+    public int getTime()
+    {
+        return time;
+    }
+
     public static Paths findShortestPath(GraphExtended g, Vertex departure, Vertex destination)
     {
         Paths p = new Paths();
@@ -43,10 +53,10 @@ public class Paths {
         
         while(!done)
         {
-            for(int i = 1; i < dijkstraFinished.size(); i++)
+            for(int i = 0; i < dijkstraFinished.size(); i++)
             {
                 // goes through the table and finds the shortest path
-                //starts from end
+                //starts from end works towards the departure city
                 if(currVertex.getCity().equals(dijkstraFinished.get(i).getCity()) 
                 && !currVertex.getCity().equals(departure.getCity()))
                 {
@@ -68,7 +78,7 @@ public class Paths {
         return shortest;
     }
 
-    public static ArrayList<PathVertex> dijkstra(GraphExtended g, Vertex v){
+    public ArrayList<PathVertex> dijkstra(GraphExtended g, Vertex v){
 
         ArrayList<PathVertex> myPathVertex = initializeSingleSource(g, v);
         PriorityQueue<PathVertex> priorityQueue = updatePriorityQueueDistances(myPathVertex);
@@ -98,7 +108,7 @@ public class Paths {
                     }
                 }
 
-                if(relaxEdge(smallest, inciPath, edge.time))
+                if(relaxEdge(smallest, inciPath, edge.getTime()))
                 {
                     priorityQueue = updatePriorityQueueDistances(myPathVertex);
                 }
@@ -126,11 +136,13 @@ public class Paths {
 
         ArrayList<PathVertex> singleSource = new ArrayList<PathVertex>();
         List<Vertex> myVerticies = g.vertices();
+        
         Vertex temporary;
 
+        
         for(int i = 0; i < myVerticies.size(); i++)
         {
-            if(myVerticies.get(i).equals(s))
+            if(myVerticies.get(i).getCity().equals(s.getCity()))
             {
                 String label = s.getCity();
                 PathVertex newPathVertex = new PathVertex(label,0);

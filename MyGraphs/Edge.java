@@ -16,12 +16,22 @@ public class Edge
         return departure.getCity();
     }
 
+    public Vertex getDepartureVertex()
+    {
+        return departure;
+    }
+
     public void setDeparture(Vertex departure) {
         this.departure = departure;
     }
 
     public String getDest() {
         return dest.getCity();
+    }
+
+    public Vertex getDestVertex()
+    {
+        return dest;
     }
 
     public void setDest(Vertex dest) {
