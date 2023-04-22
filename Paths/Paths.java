@@ -1,9 +1,9 @@
-package Path;
+package Paths;
 import MyGraphs.*; 
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.List;
-import java.util.Stack;
+
 
 
 public class Paths {
@@ -24,26 +24,28 @@ public class Paths {
 
     public static Paths findShortestPath(GraphExtended g, Vertex departure, Vertex destination)
     {
-        ArrayList<PathVertex> dijkstraFinished = dijkstra(g, departure);
-        
+        Paths p = new Paths();
+        ArrayList<PathVertex> dijkstraFinished = p.dijkstra(g, departure);
         int totalTime = 0;
         Vertex currVertex = destination;
         boolean done = false;
         ArrayList<Vertex> shortestPath = new ArrayList<Vertex>();
         
-        for(int i = 0; i < dijkstraFinished.size(); i++)
+        for(int i = 1; i < dijkstraFinished.size(); i++)
         {
-            if(currVertex.getCity().equals(dijkstraFinished.get(i).parent.getCity()))
+            if(currVertex.getCity().equals(dijkstraFinished.get(i).getCity()))
             {
                 totalTime = dijkstraFinished.get(i).distance;
             }   
         }
 
+        System.out.println(departure.getCity());
         while(!done)
         {
-            for(int i = 0; i < dijkstraFinished.size(); i++)
+            for(int i = 1; i < dijkstraFinished.size(); i++)
             {
-                if(currVertex.getCity().equals(dijkstraFinished.get(i).parent.getCity()) 
+                
+                if(currVertex.getCity().equals(dijkstraFinished.get(i).getCity()) 
                 && !currVertex.getCity().equals(departure.getCity()))
                 {
                     shortestPath.add(0,currVertex);
@@ -53,6 +55,7 @@ public class Paths {
                 {
                     shortestPath.add(0,currVertex);
                     done = true;
+                    break;
                 }
             }
         
@@ -163,6 +166,7 @@ public class Paths {
         {
             route += this.path.get(i).getCity() + " ";
         }
+
         return route;
     }
 

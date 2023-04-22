@@ -1,4 +1,4 @@
-package Path;
+package Paths;
 import MyGraphs.Vertex;
 
 public class PathVertex extends Vertex
