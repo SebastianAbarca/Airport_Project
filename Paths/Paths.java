@@ -38,13 +38,15 @@ public class Paths {
                 totalTime = dijkstraFinished.get(i).distance;
             }   
         }
+        // runs dijikstras to get table
 
-        System.out.println(departure.getCity());
+        
         while(!done)
         {
             for(int i = 1; i < dijkstraFinished.size(); i++)
             {
-                
+                // goes through the table and finds the shortest path
+                //starts from end
                 if(currVertex.getCity().equals(dijkstraFinished.get(i).getCity()) 
                 && !currVertex.getCity().equals(departure.getCity()))
                 {
@@ -111,7 +113,6 @@ public class Paths {
             PathVertex currentPV = paths.get(i);
 
             // If the currentPV is visited, skip
-            // This is how the priority queue gets smaller
             if(currentPV.visited) {
                 continue;
             }
@@ -121,7 +122,6 @@ public class Paths {
         return pq;
     }
 
-    // ** TO DO **
     public static ArrayList<PathVertex> initializeSingleSource(GraphExtended g, Vertex s) {
 
         ArrayList<PathVertex> singleSource = new ArrayList<PathVertex>();
@@ -145,11 +145,11 @@ public class Paths {
         }
         // This sets every PathVertex's parent to null and its distance to the source infinity
         // except for the source (s) where its distance is 0
-        // get the vertices (which is of type Vertex) from g and create a List of type PathVertex
+        
         return singleSource;
     }
 
-    public static boolean relaxEdge(PathVertex v, PathVertex w, int weight) {
+    public static boolean relaxEdge(PathVertex v, PathVertex w, int weight) {            //relaxes edge when necessary
         if(!v.distance.equals(Integer.MAX_VALUE) && v.distance + weight < w.distance) {
             w.distance = v.distance + weight;
             w.parent = v;
@@ -158,7 +158,7 @@ public class Paths {
         return false;
     }
 
-    public String toString()
+    public String toString() //shows route
     {
         String route = "";
 

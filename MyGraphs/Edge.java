@@ -36,10 +36,13 @@ public class Edge
         this.time = time;
     }
 
-    public String ToString()
+
+    @Override
+    public String toString() 
     {
-        return "(Departure: " + departure.getCity() + " ; Arrival: " + dest.getCity()
+        return  departure.getCity() + " <---> " + dest.getCity()
             + " ; Time: " + time;
     }
+    
     
 }

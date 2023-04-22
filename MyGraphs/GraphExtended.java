@@ -45,6 +45,16 @@ public class GraphExtended extends GraphAbstract
         return this.vertices.get(index);
     }
 
+    public void showMap()
+    {
+        List edges = edges();
+
+        for(int i = 0; i < edges.size(); i++)
+        {
+            System.out.println(edges.get(i).toString());
+        }
+    }
+
 
     
 }
