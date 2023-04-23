@@ -1,5 +1,5 @@
 
-package Path;
+package Paths;
 
 import java.util.Comparator;
 
