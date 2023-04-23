@@ -1,9 +1,9 @@
-package Path;
+package Paths;
 import MyGraphs.*; 
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.List;
-import java.util.Stack;
+
 
 
 public class Paths {
@@ -22,28 +22,42 @@ public class Paths {
         time = Integer.MAX_VALUE;
     }
 
+    public ArrayList<Vertex> getPath()
+    {
+        return path;
+    }
+
+    public int getTime()
+    {
+        return time;
+    }
+
     public static Paths findShortestPath(GraphExtended g, Vertex departure, Vertex destination)
     {
-        ArrayList<PathVertex> dijkstraFinished = dijkstra(g, departure);
-        
+        Paths p = new Paths();
+        ArrayList<PathVertex> dijkstraFinished = p.dijkstra(g, departure);
         int totalTime = 0;
         Vertex currVertex = destination;
         boolean done = false;
         ArrayList<Vertex> shortestPath = new ArrayList<Vertex>();
         
-        for(int i = 0; i < dijkstraFinished.size(); i++)
+        for(int i = 1; i < dijkstraFinished.size(); i++)
         {
-            if(currVertex.getCity().equals(dijkstraFinished.get(i).parent.getCity()))
+            if(currVertex.getCity().equals(dijkstraFinished.get(i).getCity()))
             {
                 totalTime = dijkstraFinished.get(i).distance;
             }   
         }
+        // runs dijikstras to get table
 
+        
         while(!done)
         {
             for(int i = 0; i < dijkstraFinished.size(); i++)
             {
-                if(currVertex.getCity().equals(dijkstraFinished.get(i).parent.getCity()) 
+                // goes through the table and finds the shortest path
+                //starts from end works towards the departure city
+                if(currVertex.getCity().equals(dijkstraFinished.get(i).getCity()) 
                 && !currVertex.getCity().equals(departure.getCity()))
                 {
                     shortestPath.add(0,currVertex);
@@ -53,6 +67,7 @@ public class Paths {
                 {
                     shortestPath.add(0,currVertex);
                     done = true;
+                    break;
                 }
             }
         
@@ -63,7 +78,7 @@ public class Paths {
         return shortest;
     }
 
-    public static ArrayList<PathVertex> dijkstra(GraphExtended g, Vertex v){
+    public ArrayList<PathVertex> dijkstra(GraphExtended g, Vertex v){
 
         ArrayList<PathVertex> myPathVertex = initializeSingleSource(g, v);
         PriorityQueue<PathVertex> priorityQueue = updatePriorityQueueDistances(myPathVertex);
@@ -93,7 +108,7 @@ public class Paths {
                     }
                 }
 
-                if(relaxEdge(smallest, inciPath, edge.time))
+                if(relaxEdge(smallest, inciPath, edge.getTime()))
                 {
                     priorityQueue = updatePriorityQueueDistances(myPathVertex);
                 }
@@ -108,7 +123,6 @@ public class Paths {
             PathVertex currentPV = paths.get(i);
 
             // If the currentPV is visited, skip
-            // This is how the priority queue gets smaller
             if(currentPV.visited) {
                 continue;
             }
@@ -118,16 +132,17 @@ public class Paths {
         return pq;
     }
 
-    // ** TO DO **
     public static ArrayList<PathVertex> initializeSingleSource(GraphExtended g, Vertex s) {
 
         ArrayList<PathVertex> singleSource = new ArrayList<PathVertex>();
         List<Vertex> myVerticies = g.vertices();
+        
         Vertex temporary;
 
+        
         for(int i = 0; i < myVerticies.size(); i++)
         {
-            if(myVerticies.get(i).equals(s))
+            if(myVerticies.get(i).getCity().equals(s.getCity()))
             {
                 String label = s.getCity();
                 PathVertex newPathVertex = new PathVertex(label,0);
@@ -142,11 +157,11 @@ public class Paths {
         }
         // This sets every PathVertex's parent to null and its distance to the source infinity
         // except for the source (s) where its distance is 0
-        // get the vertices (which is of type Vertex) from g and create a List of type PathVertex
+        
         return singleSource;
     }
 
-    public static boolean relaxEdge(PathVertex v, PathVertex w, int weight) {
+    public static boolean relaxEdge(PathVertex v, PathVertex w, int weight) {            //relaxes edge when necessary
         if(!v.distance.equals(Integer.MAX_VALUE) && v.distance + weight < w.distance) {
             w.distance = v.distance + weight;
             w.parent = v;
@@ -155,7 +170,7 @@ public class Paths {
         return false;
     }
 
-    public String toString()
+    public String toString() //shows route
     {
         String route = "";
 
@@ -163,6 +178,7 @@ public class Paths {
         {
             route += this.path.get(i).getCity() + " ";
         }
+
         return route;
     }
 

@@ -1,4 +1,4 @@
-package Path;
+package Paths;
 import MyGraphs.Vertex;
 
 public class PathVertex extends Vertex
@@ -32,4 +32,14 @@ public class PathVertex extends Vertex
     public void setVisited(boolean visited) {
         this.visited = visited;
     }
+    public Integer getDistance() {
+        return distance;
+    }
+    public Vertex getParent() {
+        return parent;
+    }
+    public boolean isVisited() {
+        return visited;
+    }
+
 }
