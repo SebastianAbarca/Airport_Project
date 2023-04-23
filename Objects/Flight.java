@@ -1,3 +1,4 @@
+package Objects;
 public class Flight {
     private String departure, destination;
     private int flightnum;
@@ -44,8 +45,8 @@ public class Flight {
 
     @Override
     public String toString() {
-        return "Flight [departure=" + departure + ", destination=" + destination + ", flightnum=" + flightnum
-                + ", duration=" + duration + "]";
+        return "\n  Departure: " + departure + "\n  Destination: " + destination + "\n  Flight number: " + flightnum
+                + "\n  Duration: " + duration ;
     }
 
     

@@ -1,3 +1,5 @@
+package Objects;
+
 import java.util.Random;
 
 
@@ -38,7 +40,7 @@ public class Passenger {
 
     @Override
     public String toString() {
-        return "Passenger [name=" + name + ", passport=" + passport + ", flightinfo=" + flightinfo + "]";
+        return "Passenger:\n" + "  " + name + "\nPassport number:" +"\n  " + passport + "\nFlightinfo: " + flightinfo + "\n" ;
     }
 
     // genrates random passaport number that resembles a US passaport.
@@ -55,9 +57,13 @@ public class Passenger {
         return passportNumber;
     }
 
-    // method to generate random names.
-    public static String RandomName() {
-        return null;
+    // compares names and if names are the same compares passport numbers.
+    public int compareTo(Passenger other) {
+        int nameComparison = name.compareTo(other.getName());
+        if (nameComparison != 0) {
+            return nameComparison;
+        }
+        return passport.compareTo(other.getPassport());
     }
 
 }
