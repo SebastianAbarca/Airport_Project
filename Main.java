@@ -34,6 +34,6 @@ public class Main
         GraphExtended map = new GraphExtended(vertices, edges);
         Paths p = new Paths();
 
-
-    }
+        
+    } 
 }
