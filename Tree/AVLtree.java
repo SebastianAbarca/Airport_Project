@@ -1,5 +1,5 @@
 package Tree;
-import javax.sound.sampled.SourceDataLine;
+
 
 import Objects.*;
 
@@ -35,11 +35,42 @@ public class AVLtree {
     public boolean isEmpty(){
         return size() == 0;
     }
+    //adds a passenger into the tree
+    public boolean add(Passenger person){
+        if(person == null){
+            return false;
+        }else if(!findHelper(root,person)){
+            root = addHelper(root,person);
+            nodeCount++;
+            return true;
+        }
+        return false;
+    }
+    // the remove method removes a passenger from the tree
+    public boolean remove(Passenger person){
+        if(person == null){
+            return false;
+        }
+
+        if(findHelper(root, person)){
+            System.out.println("REMOVED\n");
+            root = removeHelper(root, person);
+            nodeCount--;
+            return true;
+        }else{
+            System.out.println("Passenger not found");
+            return false;
+        }
+    }
     //checks if a specific passenger is in the tree
     public boolean find(Passenger p){
         return findHelper(root, p);
     }
-    //helper method for contains
+    // returns the passenger
+    public Passenger getPassenger(String identifier) {
+            return getPassengerHelper(root, identifier);
+        }
+    //helper method for find
     private boolean findHelper(Node node, Passenger person){
         if(node == null){
             return false;
@@ -54,17 +85,6 @@ public class AVLtree {
             System.out.println(node.person.toString());
         return true;
         }
-    }
-    //inserts a passenger into the tree
-    public boolean add(Passenger person){
-        if(person == null){
-            return false;
-        }else if(!findHelper(root,person)){
-            root = addHelper(root,person);
-            nodeCount++;
-            return true;
-        }
-        return false;
     }
     //helper method for insert
     private Node addHelper(Node node, Passenger person){
@@ -156,22 +176,6 @@ public class AVLtree {
         update(newP);
         return newP;
     }
-    // the remove method removes a passenger from the tree using the passenger object name
-    public boolean remove(Passenger person){
-        if(person == null){
-            return false;
-        }
-
-        if(findHelper(root, person)){
-            System.out.println("REMOVED\n");
-            root = removeHelper(root, person);
-            nodeCount--;
-            return true;
-        }else{
-            System.out.println("Passenger not found");
-            return false;
-        }
-    }
     // helper method for remove 
     private Node removeHelper(Node node, Passenger person) {
 
@@ -207,11 +211,6 @@ public class AVLtree {
         return balance(node);
     
       }  
-    // returns the passenger
-    public Passenger getPassenger(String identifier) {
-        return getPassengerHelper(root, identifier);
-        
-    }
     // get Passenger helper method
     private Passenger getPassengerHelper(Node node, String identifier) {
         if (node == null) {
@@ -252,50 +251,6 @@ public class AVLtree {
                 print( node.right );
             }
         }
-
-
-      /*
-       *   public boolean remove(Passenger person){
-        if(person == null){
-            return false;
-        }
-
-        if(findHelper(root, person)){
-            root = removeHelper(root, person,null);
-            nodeCount--;
-            return true;
-        }
-        return false;
-    }
-    // the remove method removes a passenger using any identifier of the passenger (name,passport number)
-    public boolean remove(String identifier) {
-        if(identifier == null || identifier.isEmpty()) {
-            return false;
-        }
-    
-        Passenger passenger = getPassenger(identifier);
-        if(passenger == null) {
-            return false;
-        }
-    
-        return remove(passenger);
-    }
-
-
-        public void inorderTraversal() {
-        inorderTraversalHelper(root);
-    }
-    // helper method for the traversal
-    private void inorderTraversalHelper(Node node) {
-        if (node == null) {
-            return;
-        }
-        inorderTraversalHelper(node.left);
-        System.out.println(node.person);
-        inorderTraversalHelper(node.right);
-    }
-
-       */
 
 
 }
