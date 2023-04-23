@@ -1,16 +1,10 @@
 import MyGraphs.*;
 import Tree.*;
-import Path.*;
-import Objects.*;
-public class Main {
-    public static void main(String[] args){
-       
-       
-=======
-import java.util.*;
-import MyGraphs.*;
 import Paths.*;
-
+import Objects.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main
 {
@@ -40,6 +34,6 @@ public class Main
         GraphExtended map = new GraphExtended(vertices, edges);
         Paths p = new Paths();
 
->>>>>>> 2257bb59431956f9c4dec57fd49bec7eaae40bf9
+
     }
 }
