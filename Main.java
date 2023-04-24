@@ -84,8 +84,14 @@ public class Main
          * place that passenger on a variable
          * pass variable to tree.add()
          */
-            Passenger.createPassengers();
-            tree.add(null);
+            int a;
+            System.out.println("Here are the passenger that are available to be added please select one.");
+            ArrayList<Passenger> myList = Passenger.createPassengers();
+            for(int i = 0; i < myList.size();i++){
+                System.out.println(i+1 + ". " + myList.get(i));
+            }
+            a = scnr.nextInt();
+            tree.add(myList.get(a));
             break;
         case 5:
         /*
