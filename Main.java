@@ -74,8 +74,23 @@ public class Main
         case 2:
             tree.printTree();
             break;
-        case 3:
-            p.findShortestPath();
+        case 3: // find shortest path between 2 cities
+            Vertex v1;
+            Vertex v2;
+            String departure;
+            String destination;
+
+            System.out.println("Please select a where you will be departing from: ");
+            System.out.println(map.vertices());
+            departure = scnr.nextLine();
+            System.out.println("Please select a destination: ");
+            System.out.println(map.vertices());
+            destination = scnr.nextLine();
+            v1 = findVertex(destination, map);
+            v2 = findVertex(departure, map);
+
+            System.out.println(p.findShortestPath(map, v1, v2));
+
             break;
         case 4:
         /*
@@ -116,6 +131,20 @@ public class Main
             break;
         
     }
+    }
+
+    public static Vertex findVertex(String string, GraphExtended g)
+    {
+        Vertex v;
+        List<Vertex> verticies = g.vertices();
+        for(int i = 0; i < verticies.size(); i++)
+        {
+            if(string.equalsIgnoreCase(verticies.get(i).getCity()))
+            {
+                return verticies.get(i);
+            }
+        }
+        return null;
     }
    
 }
