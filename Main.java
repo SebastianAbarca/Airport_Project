@@ -2,11 +2,8 @@ import MyGraphs.*;
 import Tree.*;
 import Paths.*;
 import Objects.*;
-import java.util.List;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.InputMismatchException;
+
+import java.util.*;
 
 /*
  * Group member:
@@ -40,15 +37,33 @@ public class Main
     new Edge(cairo, newDehli, 8), new Edge(tokyo, newDehli, 8), new Edge(shanghai, newDehli, 10),
     new Edge(tokyo, shanghai, 3)
             );
+    static HashMap<String, Flight> flyFo = new HashMap<String, Flight>();
+    static Flight nakondaAirlines = new Flight("Miami", "Madrid", 3476, 8.35);
+    static Flight aMerryCano = new Flight("Miami", "Los Angeles", 537, 6.06);
+    static Flight sebby = new Flight("Miami", "Buenos Aires", 843, 8.50);
+    static Flight juanNa = new Flight("Los Angeles", "Tokyo", 7834, 11.50);
+    static Flight birdie = new Flight("Los Angeles", "Buenos Aires", 9433, 14.30);
+    static Flight eronda = new Flight("Madrid", "Paris", 4362, 2.00);
+    static Flight ilmarAirlines = new Flight("Madrid", "Cairo", 3623, 4.35);
+    static Flight USAirAir = new Flight("Paris", "Cairo", 4284, 4.20);
+    static Flight TDFly = new Flight("Cairo", "Shanghai", 8532, 15.40);
+    static Flight KFlights = new Flight("Cairo", "New Delhi", 9434, 8.20);
+    static Flight JPAir = new Flight("Tokyo", "New Delhi", 1462, 7.50);
+    static Flight TokyoFlights = new Flight("Tokyo", "Shanghai", 3452, 2.55);
+    static Flight ShangHeight = new Flight("Shanghai", "New Delhi", 4831, 9.35);
+    static Flight[] allFlights = {nakondaAirlines, aMerryCano, sebby,juanNa,birdie,eronda,ilmarAirlines,USAirAir
+            ,TDFly,KFlights,JPAir,TokyoFlights,ShangHeight};
 
     public static void main(String[] args)
     {
+        for(int i = 0;i< allFlights.length;i++)
+        {
+            flyFo.put(allFlights[i].getDeparture(), allFlights[i]);
+        }
         GraphExtended map = new GraphExtended(vertices, edges);
         Paths p = new Paths();
         AVLtree tree = new AVLtree();
         menu(map,tree,p);
-
-        
     } 
 
     public static void menu(GraphExtended map,AVLtree tree, Paths p){
