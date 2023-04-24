@@ -7,11 +7,14 @@ import java.util.*;
 
 /*
  * Group member:
- * Juan Zaragoza
+ * Juan Zaragoza, Sebastian Abarca
  * 
  * Contribution:
  * Juan Zaragoza
- *      AVL tree, and Passenger classes
+ *      AVL tree, Passenger, and Main classes
+ * 
+ * Sebastian Abarca
+ *     Graph, Paths, and Main class
  */
 
 
@@ -99,21 +102,23 @@ public class Main
             tree.printTree();
             break;
         case 3: // find shortest path between 2 cities
-            Vertex v1;
-            Vertex v2;
-            String departure;
-            String destination;
-
+        Vertex v1 = null;
+        Vertex v2 = null;
+        String departure;
+        String destination;
+        do{
             System.out.println("Please select a where you will be departing from: ");
             System.out.println(map.vertices());
             departure = scnr.nextLine();
             System.out.println("Please select a destination: ");
             System.out.println(map.vertices());
             destination = scnr.nextLine();
-            v1 = findVertex(destination, map);
-            v2 = findVertex(departure, map);
+        
+        v1 = findVertex(destination, map);
+        v2 = findVertex(departure, map);
+        }while(v1 == null && v2 == null);
 
-            System.out.println(p.findShortestPath(map, v1, v2));
+        System.out.println(p.findShortestPath(map, v1, v2));
 
             break;
         case 4: // add passenger
@@ -176,6 +181,59 @@ public class Main
     }
     }
 
+
+    public static void addVertexEdge(GraphExtended g)
+    {
+        Scanner kybrd = new Scanner(System.in);
+        String v1;
+        String v2;
+        Vertex cityNew;
+        Vertex citySelect;
+        int time = 0;
+        int count = 0;
+        boolean tryCatch = false;
+        boolean tryCatch2 = false;
+        int timeNew = 0;
+        System.out.println("Which airport would you like to add");
+        v1 = kybrd.nextLine();
+        do{
+            try{
+                System.out.println("How many airports does it connect to?");
+                count = kybrd.nextInt();
+                tryCatch = true;
+            }catch(InputMismatchException e)
+            {
+                System.out.println("Sorry please enter a number.");
+                tryCatch = false;
+            }
+        }while(!tryCatch);
+
+        cityNew = new Vertex(v1);
+        for(int i = 0; i < count; i++)
+        {
+            g.vertices();
+            System.out.println("Please select its connections: ");
+            v2 = kybrd.nextLine();
+
+            do{
+                try{
+                    System.out.println("How long is the flight?");
+                    time = kybrd.nextInt();
+                    tryCatch2 = true;
+                }catch(InputMismatchException e)
+                {
+                    System.out.println("Sorry please enter a number.");
+                    tryCatch2 = false;
+                }
+            }while(!tryCatch2);
+            citySelect = findVertex(v2, g);
+            Edge edgeNew = new Edge(cityNew, citySelect, time);
+            edges.add(edgeNew);
+            
+        }
+
+       
+    }
     public static Vertex findVertex(String string, GraphExtended g)
     {
         Vertex v;
