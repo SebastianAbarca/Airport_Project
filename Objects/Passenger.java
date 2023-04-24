@@ -67,23 +67,37 @@ public class Passenger {
         return passport.compareTo(other.getPassport());
     }
     // creates predetermined passengers and adds them to an arrayList that it returns.
-    public static ArrayList createPassengers(){
+    public static ArrayList<Passenger> createPassengers(){
         ArrayList<Passenger> myList = new ArrayList<Passenger>();
-        /* 
-        Passenger p1 = new Passenger(" Ava Patel", randomPassaport(),
-        Passenger p2 = new Passenger("Joshua Kim", randomPassaport(), 
-        Passenger p3 = new Passenger("Isabella Nguyen", randomPassaport(),
-        Passenger p4 = new Passenger("Sophia Garcia", randomPassaport(), 
-        Passenger p5 = new Passenger("Michael Rodriguez", randomPassaport(), 
-        Passenger p6 = new Passenger("Emily Leer", randomPassaport(),
-        Passenger p7 = new Passenger("Benjamin Davis", randomPassaport(),
-        Passenger p8 = new Passenger("Victoria Hernandez", randomPassaport(),
-        Passenger p9 = new Passenger("William Baker", randomPassaport(),
-        Passenger p10 = new Passenger("Gabriella Chavez", randomPassaport(),
-        Passenger p11 = new Passenger("Christopher Green", randomPassaport(),
-        Passenger p12 = new Passenger("Olivia Taylor", randomPassaport(),
-        Passenger p13 = new Passenger("Daniel Wong", randomPassaport(),
-        */
+
+        Flight nakondaAirlines = new Flight("Miami", "Madrid", 3476, 8.35);
+        Flight aMerryCano = new Flight("Miami", "Los Angeles", 537, 6.06);
+        Flight sebby = new Flight("Miami", "Buenos Aires", 843, 8.50);
+        Flight juanNa = new Flight("Los Angeles", "Tokyo", 7834, 11.50);
+        Flight birdie = new Flight("Los Angeles", "Buenos Aires", 9433, 14.30);
+        Flight eronda = new Flight("Madrid", "Paris", 4362, 2.00);
+        Flight ilmarAirlines = new Flight("Madrid", "Cairo", 3623, 4.35);
+        Flight USAirAir = new Flight("Paris", "Cairo", 4284, 4.20);
+        Flight TDFly = new Flight("Cairo", "Shanghai", 8532, 15.40);
+        Flight KFlights = new Flight("Cairo", "New Delhi", 9434, 8.20);
+        Flight JPAir = new Flight("Tokyo", "New Delhi", 1462, 7.50);
+        Flight TokyoFlights = new Flight("Tokyo", "Shanghai", 3452, 2.55);
+        Flight ShangHeight = new Flight("Shanghai", "New Delhi", 4831, 9.35);
+        
+        Passenger p1 = new Passenger(" Ava Patel", randomPassaport(),nakondaAirlines);
+        Passenger p2 = new Passenger("Joshua Kim", randomPassaport(), aMerryCano);
+        Passenger p3 = new Passenger("Isabella Nguyen", randomPassaport(),sebby);
+        Passenger p4 = new Passenger("Sophia Garcia", randomPassaport(), juanNa);
+        Passenger p5 = new Passenger("Michael Rodriguez", randomPassaport(), birdie);
+        Passenger p6 = new Passenger("Emily Leer", randomPassaport(),eronda);
+        Passenger p7 = new Passenger("Benjamin Davis", randomPassaport(),ilmarAirlines);
+        Passenger p8 = new Passenger("Victoria Hernandez", randomPassaport(),USAirAir);
+        Passenger p9 = new Passenger("William Baker", randomPassaport(),TDFly);
+        Passenger p10 = new Passenger("Gabriella Chavez", randomPassaport(),KFlights);
+        Passenger p11 = new Passenger("Christopher Green", randomPassaport(),JPAir);
+        Passenger p12 = new Passenger("Olivia Taylor", randomPassaport(),TokyoFlights);
+        Passenger p13 = new Passenger("Daniel Wong", randomPassaport(),ShangHeight);
+        
 
         myList.add(p1);
         myList.add(p2);
