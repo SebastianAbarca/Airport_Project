@@ -92,39 +92,52 @@ public class Main
             System.out.println(p.findShortestPath(map, v1, v2));
 
             break;
-        case 4:
-        /*
-         * print the availabe passenger
-         * get input from user 
-         * place that passenger on a variable
-         * pass variable to tree.add()
-         */
+        case 4: // add passenger
             int a;
+
             System.out.println("Here are the passenger that are available to be added please select one.");
+
             ArrayList<Passenger> myList = Passenger.createPassengers();
+
             for(int i = 0; i < myList.size();i++){
                 System.out.println(i+1 + ". " + myList.get(i));
             }
             a = scnr.nextInt();
+
             tree.add(myList.get(a));
+
             break;
-        case 5:
-        /*
-         * print removable passengers
-         * get input
-         * place passenger on variable 
-         * pass it to remove
-         */
-            tree.remove(null);
+        case 5: // remove passenger
+            int b;
+
+            System.out.println("Here are the passenger that are available to be removed please select one.");
+
+            ArrayList<Passenger> myList2 = Passenger.createPassengers();
+
+            for(int i = 0; i < myList2.size();i++){
+                System.out.println(i+1 + ". " + myList2.get(i));
+            }
+
+            b = scnr.nextInt();
+
+            tree.remove(myList2.get(b));
+
             break;
-        case 6:
-        /*
-         * print findable passengers
-         * get input
-         * place passenger on variable 
-         * pass it to find
-         */
-            tree.find(null);
+        case 6: // find passenger
+            int c;
+
+            System.out.println("Here are the passenger that are available to be removed please select one.");
+
+            ArrayList<Passenger> myList3 = Passenger.createPassengers();
+
+            for(int i = 0; i < myList3.size();i++){
+                System.out.println(i+1 + ". " + myList3.get(i));
+            }
+
+            c = scnr.nextInt();
+
+            tree.find(myList3.get(c));
+            
             break;
         case 7:
             map.addFlight();
