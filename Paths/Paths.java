@@ -32,7 +32,7 @@ public class Paths {
         return time;
     }
 
-    public static Paths findShortestPath(GraphExtended g, Vertex departure, Vertex destination)
+    public Paths findShortestPath(GraphExtended g, Vertex departure, Vertex destination)
     {
         Paths p = new Paths();
         ArrayList<PathVertex> dijkstraFinished = p.dijkstra(g, departure);
