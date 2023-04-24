@@ -3,8 +3,11 @@ import Tree.*;
 import Paths.*;
 import Objects.*;
 import java.util.List;
+import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.InputMismatchException;
+
 
 public class Main
 {
@@ -33,7 +36,86 @@ public class Main
     {
         GraphExtended map = new GraphExtended(vertices, edges);
         Paths p = new Paths();
+        AVLtree tree = new AVLtree();
+        menu(map,tree,p);
 
         
     } 
+
+    public static void menu(GraphExtended map,AVLtree tree, Paths p){
+        Scanner scnr = new Scanner(System.in);
+        boolean flag = false;
+        int input = 0;
+    do{
+        try{
+            System.out.println("1.Show map");
+            System.out.println("2.Print passenger list");
+            System.out.println("3.Print shortest path");
+            System.out.println("4.add passenger");
+            System.out.println("5.remove passenger");
+            System.out.println("6.find passenger");
+            System.out.println("7.add flight");
+            System.out.println("8.remove flight");
+            System.out.println("9.find flight");
+            input = scnr.nextInt();
+            flag = true;
+
+        }catch(InputMismatchException e){
+            System.out.println("please try again using numbers 1 through 9");
+            flag = false;
+            scnr.next();
+        }
+    }while(flag == false);
+
+    switch(input){
+        case 1:
+        map.showMap();
+        break;
+        case 2:
+        tree.printTree();
+        break;
+        case 3:
+        p.findShortestPath();
+        break;
+        case 4:
+        /*
+         * print the availabe passenger
+         * get input from user 
+         * place that passenger on a variable
+         * pass variable to tree.add()
+         */
+        Passenger.createPassengers();
+        tree.add(null);
+        break;
+        case 5:
+        /*
+         * print removable passengers
+         * get input
+         * place passenger on variable 
+         * pass it to remove
+         */
+        tree.remove(null);
+        break;
+        case 6:
+        /*
+         * print findable passengers
+         * get input
+         * place passenger on variable 
+         * pass it to find
+         */
+        tree.find(null);
+        break;
+        case 7:
+        map.addFlight();
+        break;
+        case 8:
+        map.removeFlight();
+        break;
+        case 9:
+        map.findFlight();
+        break;
+        
+    }
+    }
+   
 }

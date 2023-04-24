@@ -1,5 +1,6 @@
 package Objects;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -14,7 +15,11 @@ public class Passenger {
         this.flightinfo = flightinfo;
     }
 
-    public String getName() {
+    public Passenger() {
+
+	}
+
+	public String getName() {
         return name;
     }
 
@@ -66,4 +71,41 @@ public class Passenger {
         return passport.compareTo(other.getPassport());
     }
 
+    public static ArrayList createPassengers(){
+        ArrayList<Passenger> myList = new ArrayList<Passenger>();
+        /* 
+        Passenger p1 = new Passenger(" Ava Patel", randomPassaport(),
+        Passenger p2 = new Passenger("Joshua Kim", randomPassaport(), 
+        Passenger p3 = new Passenger("Isabella Nguyen", randomPassaport(),
+        Passenger p4 = new Passenger("Sophia Garcia", randomPassaport(), 
+        Passenger p5 = new Passenger("Michael Rodriguez", randomPassaport(), 
+        Passenger p6 = new Passenger("Emily Leer", randomPassaport(),
+        Passenger p7 = new Passenger("Benjamin Davis", randomPassaport(),
+        Passenger p8 = new Passenger("Victoria Hernandez", randomPassaport(),
+        Passenger p9 = new Passenger("William Baker", randomPassaport(),
+        Passenger p10 = new Passenger("Gabriella Chavez", randomPassaport(),
+        Passenger p11 = new Passenger("Christopher Green", randomPassaport(),
+        Passenger p12 = new Passenger("Olivia Taylor", randomPassaport(),
+        Passenger p13 = new Passenger("Daniel Wong", randomPassaport(),
+        */
+
+        myList.add(p1);
+        myList.add(p2);
+        myList.add(p3);
+        myList.add(p4);
+        myList.add(p5);
+        myList.add(p6);
+        myList.add(p7);
+        myList.add(p8);
+        myList.add(p9);
+        myList.add(p10);
+        myList.add(p11);
+        myList.add(p12);
+        myList.add(p13);
+
+        return myList;
+
+    }
+
+    
 }
