@@ -241,7 +241,7 @@ public class AVLtree {
     public void printTree(){
         print(root);
     }
-      // print is the helper method for print
+      // print is the helper method for printTree
     private void print( Node node )
         {
             if( node != null )

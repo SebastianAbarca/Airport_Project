@@ -15,11 +15,7 @@ public class Passenger {
         this.flightinfo = flightinfo;
     }
 
-    public Passenger() {
-
-	}
-
-	public String getName() {
+    public String getName() {
         return name;
     }
 
@@ -70,7 +66,7 @@ public class Passenger {
         }
         return passport.compareTo(other.getPassport());
     }
-
+    // creates predetermined passengers and adds them to an arrayList that it returns.
     public static ArrayList createPassengers(){
         ArrayList<Passenger> myList = new ArrayList<Passenger>();
         /* 
