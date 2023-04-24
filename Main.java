@@ -8,6 +8,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
+/*
+ * Group member:
+ * Juan Zaragoza
+ * 
+ * Contribution:
+ * Juan Zaragoza
+ *      AVL tree, and Passenger classes
+ */
+
 
 public class Main
 {
@@ -137,7 +146,7 @@ public class Main
             c = scnr.nextInt();
 
             tree.find(myList3.get(c));
-            
+
             break;
         case 7:
             map.addFlight();
