@@ -8,7 +8,7 @@ import java.util.*;
 
 /*
  * Group member:
- * Juan Zaragoza, Sebastian Abarca
+ * Juan Zaragoza, Sebastian Abarca, Eros Lorenzo
  * 
  * Contribution:
  * Juan Zaragoza
@@ -16,6 +16,9 @@ import java.util.*;
  * 
  * Sebastian Abarca
  *     Graph, Paths, and Main class
+ * 
+ * Eros Lorenzo
+ *      HashMap
  */
 
 
@@ -172,12 +175,15 @@ public class Main
 
             break;
         case 7:
+        
            // map.addFlight();
             break;
         case 8:
+         
            // map.removeFlight();
             break;
         case 9:
+         
            // map.findFlight();
             break;
         
