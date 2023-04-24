@@ -69,14 +69,14 @@ public class Main
 
     switch(input){
         case 1:
-        map.showMap();
-        break;
+            map.showMap();
+            break;
         case 2:
-        tree.printTree();
-        break;
+            tree.printTree();
+            break;
         case 3:
-        p.findShortestPath();
-        break;
+            p.findShortestPath();
+            break;
         case 4:
         /*
          * print the availabe passenger
@@ -84,9 +84,9 @@ public class Main
          * place that passenger on a variable
          * pass variable to tree.add()
          */
-        Passenger.createPassengers();
-        tree.add(null);
-        break;
+            Passenger.createPassengers();
+            tree.add(null);
+            break;
         case 5:
         /*
          * print removable passengers
@@ -94,8 +94,8 @@ public class Main
          * place passenger on variable 
          * pass it to remove
          */
-        tree.remove(null);
-        break;
+            tree.remove(null);
+            break;
         case 6:
         /*
          * print findable passengers
@@ -103,17 +103,17 @@ public class Main
          * place passenger on variable 
          * pass it to find
          */
-        tree.find(null);
-        break;
+            tree.find(null);
+            break;
         case 7:
-        map.addFlight();
-        break;
+            map.addFlight();
+            break;
         case 8:
-        map.removeFlight();
-        break;
+            map.removeFlight();
+            break;
         case 9:
-        map.findFlight();
-        break;
+            map.findFlight();
+            break;
         
     }
     }
