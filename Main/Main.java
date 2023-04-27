@@ -75,6 +75,7 @@ public class Main
         AVLtree tree = new AVLtree();
 
         menu(map,tree,p);
+    
     } 
 
     static Scanner scnr = new Scanner(System.in);
