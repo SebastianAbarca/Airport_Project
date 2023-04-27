@@ -42,7 +42,11 @@ public class Main
     new Edge(losAngeles, tokyo, 12), new Edge(losAngeles, buenosAires, 14), new Edge(madrid, paris, 2),
     new Edge(madrid, cairo, 4), new Edge(paris, cairo, 4), new Edge(cairo,shanghai, 14),
     new Edge(cairo, newDehli, 8), new Edge(tokyo, newDehli, 8), new Edge(shanghai, newDehli, 10),
-    new Edge(tokyo, shanghai, 3)
+    new Edge(tokyo, shanghai, 3),new Edge(madrid, miami, 8), new Edge(losAngeles, miami, 6), new Edge(buenosAires, miami, 9),
+    new Edge(tokyo, losAngeles, 12), new Edge(buenosAires, losAngeles, 14), new Edge(paris, madrid, 2),
+    new Edge(cairo, madrid, 4), new Edge(cairo, paris, 4), new Edge(shanghai, cairo, 14),
+    new Edge(newDehli, cairo, 8), new Edge(newDehli, tokyo, 8), new Edge(newDehli, shanghai, 10),
+    new Edge(shanghai, tokyo, 3)
             );
     static HashMap<String, Flight> flyFo = new HashMap<String, Flight>();
     static Flight nakondaAirlines = new Flight("Miami", "Madrid", 3476, 8.35);
@@ -87,7 +91,7 @@ public class Main
             System.out.println("6.find passenger");
             System.out.println("7.add flight");
             System.out.println("8.remove flight");
-            System.out.println("9.find flight");
+            System.out.println("9.Show flight information");
             input = scnr.nextInt();
             flag = true;
 
@@ -124,19 +128,25 @@ public class Main
         Vertex v2 = null;
         String departure;
         String destination;
+        scnr.nextLine();
         do{
+        
+        
             System.out.println("Please select a where you will be departing from: ");
             System.out.println(map.vertices());
             departure = scnr.nextLine();
             System.out.println("Please select a destination: ");
             System.out.println(map.vertices());
             destination = scnr.nextLine();
+            
         
-        v1 = findVertex(destination, map);
-        v2 = findVertex(departure, map);
-        }while(v1 == null && v2 == null);
+            v1 = findVertex(destination, map);
+            v2 = findVertex(departure, map);
+            
+       
+        }while((v1 == null || v2 == null) && (v1 == null && v2 == null));
 
-        System.out.println(p.findShortestPath(map, v1, v2));
+        System.out.println(p.findShortestPath(map, v2, v1));
 
             break;
         case 4: // add passenger
@@ -184,7 +194,7 @@ public class Main
             break;
         case 9:
          
-           // map.findFlight();
+            showFlightList(flyFo);
             break;
         
     }
@@ -192,57 +202,15 @@ public class Main
     }
 
 
-    public static void addVertexEdge(GraphExtended g)
+    public static void showFlightList(HashMap<String, Flight> flytfo)
     {
-        Scanner kybrd = new Scanner(System.in);
-        String v1;
-        String v2;
-        Vertex cityNew;
-        Vertex citySelect;
-        int time = 0;
-        int count = 0;
-        boolean tryCatch = false;
-        boolean tryCatch2 = false;
-        int timeNew = 0;
-        System.out.println("Which airport would you like to add");
-        v1 = kybrd.nextLine();
-        do{
-            try{
-                System.out.println("How many airports does it connect to?");
-                count = kybrd.nextInt();
-                tryCatch = true;
-            }catch(InputMismatchException e)
-            {
-                System.out.println("Sorry please enter a number.");
-                tryCatch = false;
-            }
-        }while(!tryCatch);
+        for (Map.Entry<String, Flight> entry : flytfo.entrySet()) {
+            Flight value = entry.getValue();
 
-        cityNew = new Vertex(v1);
-        for(int i = 0; i < count; i++)
-        {
-            g.vertices();
-            System.out.println("Please select its connections: ");
-            v2 = kybrd.nextLine();
-
-            do{
-                try{
-                    System.out.println("How long is the flight?");
-                    time = kybrd.nextInt();
-                    tryCatch2 = true;
-                }catch(InputMismatchException e)
-                {
-                    System.out.println("Sorry please enter a number.");
-                    tryCatch2 = false;
-                }
-            }while(!tryCatch2);
-            citySelect = findVertex(v2, g);
-            Edge edgeNew = new Edge(cityNew, citySelect, time);
-            edges.add(edgeNew);
-            
+            System.out.println("Flight #" + value.getFlightnum() + ": Departure(" + value.getDeparture() + 
+            ") Destination(" + value.getDestination() + ") duration: " + value.getDuration());
         }
 
-       
     }
     public static Vertex findVertex(String string, GraphExtended g)
     {
