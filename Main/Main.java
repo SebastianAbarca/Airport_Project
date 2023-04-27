@@ -92,22 +92,21 @@ public class Main
                 System.out.println("5.remove passenger");
                 System.out.println("6.find passenger");
                 System.out.println("7.add flight");
-                System.out.println("8.remove flight");
-                System.out.println("9.Show flight information");
-                System.out.println("10. Exit");
+                System.out.println("8.Show flight information");
+                System.out.println("9. Exit");
                 input = scnr.nextInt();
 
-                if(input <= 10 && input >= 1){
+                if(input <= 9 && input >= 1){
                     swi(input, map, tree, p);
                 }
-                else if(input == 10){
+                else if(input == 9){
                     flag = true;
                 }else{
-                    System.out.println("Please try again using numbers 1 through 10");
+                    System.out.println("Please try again using numbers 1 through 9");
                 }
             
             }catch(InputMismatchException e){
-                System.out.println("please try again using numbers 1 through 10");
+                System.out.println("please try again using numbers 1 through 9");
                 flag = false;
                 scnr.next();
             }
@@ -212,16 +211,11 @@ public class Main
             break;
 
             case 8:
-         
-           // map.removeFlight();
-            break;
-
-            case 9:
                 showFlightList(flyFo);
                 System.out.println();
             break;
 
-            case 10:
+            case 9:
                 System.exit(0);
             break;
         
