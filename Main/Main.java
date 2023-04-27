@@ -204,7 +204,13 @@ public class Main
 
     public static void showFlightList(HashMap<String, Flight> flytfo)
     {
-        System.out.println(flytfo.toString());
+        for (Map.Entry<String, Flight> entry : flytfo.entrySet()) {
+            Flight value = entry.getValue();
+
+            System.out.println("Flight #" + value.getFlightnum() + ": Departure(" + value.getDeparture() + 
+            ") Destination(" + value.getDestination() + ") duration: " + value.getDuration());
+        }
+
     }
     public static Vertex findVertex(String string, GraphExtended g)
     {
