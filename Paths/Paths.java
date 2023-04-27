@@ -115,6 +115,10 @@ public class Paths {
             }
             
         }
+
+
+
+
         return myPathVertex;
     }
     private static PriorityQueue<PathVertex> updatePriorityQueueDistances(List<PathVertex> paths) {
@@ -162,7 +166,7 @@ public class Paths {
     }
 
     public static boolean relaxEdge(PathVertex v, PathVertex w, int weight) {            //relaxes edge when necessary
-        if((!v.distance.equals(Integer.MAX_VALUE) && v.distance + weight < w.distance)||(v.distance.equals(Integer.MAX_VALUE))) {
+        if(!v.distance.equals(Integer.MAX_VALUE) && v.distance + weight < w.distance) {
             w.distance = v.distance + weight;
             w.parent = v;
             
