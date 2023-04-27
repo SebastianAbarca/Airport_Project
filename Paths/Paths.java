@@ -55,19 +55,25 @@ public class Paths {
         {
             for(int i = 0; i < dijkstraFinished.size() - 1; i++)
             {
+                if(currVertex == null)
+                {
+                    currVertex = dijkstraFinished.get(i);
+                }
+                else{
                 // goes through the table and finds the shortest path
                 //starts from end works towards the departure city
-                if(currVertex.getCity().equals(dijkstraFinished.get(i).getCity()) 
-                && !currVertex.getCity().equals(departure.getCity()))
-                {
-                    shortestPath.add(0,currVertex);
-                    currVertex = dijkstraFinished.get(i).parent;
-                }
-                else if(currVertex.getCity().equals(departure.getCity()))
-                {
-                    shortestPath.add(0,currVertex);
-                    done = true;
-                    break;
+                    if(currVertex.getCity().equals(dijkstraFinished.get(i).getCity()) 
+                    && !currVertex.getCity().equals(departure.getCity()))
+                    {
+                        shortestPath.add(0,currVertex);
+                        currVertex = dijkstraFinished.get(i).parent;
+                    }
+                    else if(currVertex.getCity().equals(departure.getCity()))
+                    {
+                        shortestPath.add(0,currVertex);
+                        done = true;
+                        break;
+                    }
                 }
             }
         
@@ -181,8 +187,9 @@ public class Paths {
 
         for(int i = 0; i < this.path.size(); i++)
         {
-            route += this.path.get(i).getCity() + " ";
+            route += this.path.get(i).getCity() + " --> ";
         }
+        route += " ; total time: " + this.time;
 
         return route;
     }

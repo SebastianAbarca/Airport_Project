@@ -42,7 +42,11 @@ public class Main
     new Edge(losAngeles, tokyo, 12), new Edge(losAngeles, buenosAires, 14), new Edge(madrid, paris, 2),
     new Edge(madrid, cairo, 4), new Edge(paris, cairo, 4), new Edge(cairo,shanghai, 14),
     new Edge(cairo, newDehli, 8), new Edge(tokyo, newDehli, 8), new Edge(shanghai, newDehli, 10),
-    new Edge(tokyo, shanghai, 3)
+    new Edge(tokyo, shanghai, 3),new Edge(madrid, miami, 8), new Edge(losAngeles, miami, 6), new Edge(buenosAires, miami, 9),
+    new Edge(tokyo, losAngeles, 12), new Edge(buenosAires, losAngeles, 14), new Edge(paris, madrid, 2),
+    new Edge(cairo, madrid, 4), new Edge(cairo, paris, 4), new Edge(shanghai, cairo, 14),
+    new Edge(newDehli, cairo, 8), new Edge(newDehli, tokyo, 8), new Edge(newDehli, shanghai, 10),
+    new Edge(shanghai, tokyo, 3)
             );
     static HashMap<String, Flight> flyFo = new HashMap<String, Flight>();
     static Flight nakondaAirlines = new Flight("Miami", "Madrid", 3476, 8.35);
