@@ -17,7 +17,7 @@ import java.util.*;
  *     Graph, Paths, and Main class
  * 
  * Eros Lorenzo
- *      HashMap
+ *      HashMap, Main Class method
  */
 
 
