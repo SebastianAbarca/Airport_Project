@@ -53,7 +53,7 @@ public class Paths {
         
         while(!done)
         {
-            for(int i = 0; i < dijkstraFinished.size(); i++)
+            for(int i = 0; i < dijkstraFinished.size() - 1; i++)
             {
                 // goes through the table and finds the shortest path
                 //starts from end works towards the departure city
@@ -162,9 +162,10 @@ public class Paths {
     }
 
     public static boolean relaxEdge(PathVertex v, PathVertex w, int weight) {            //relaxes edge when necessary
-        if(!v.distance.equals(Integer.MAX_VALUE) && v.distance + weight < w.distance) {
+        if((!v.distance.equals(Integer.MAX_VALUE) && v.distance + weight < w.distance)||(v.distance.equals(Integer.MAX_VALUE))) {
             w.distance = v.distance + weight;
             w.parent = v;
+            
             return true;
         }
         return false;

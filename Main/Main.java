@@ -124,19 +124,28 @@ public class Main
         Vertex v2 = null;
         String departure;
         String destination;
+        scnr.nextLine();
         do{
+        try{
+        
             System.out.println("Please select a where you will be departing from: ");
             System.out.println(map.vertices());
             departure = scnr.nextLine();
             System.out.println("Please select a destination: ");
             System.out.println(map.vertices());
             destination = scnr.nextLine();
+            
         
         v1 = findVertex(destination, map);
         v2 = findVertex(departure, map);
-        }while(v1 == null && v2 == null);
+            
+        }catch(InputMismatchException e)
+        {
+            System.out.println("Sorry please enter one of the selections above.");
+        }
+    }while((v1 == null || v2 == null) && (v1 == null && v2 == null));
 
-        System.out.println(p.findShortestPath(map, v1, v2));
+        System.out.println(p.findShortestPath(map, v2, v1));
 
             break;
         case 4: // add passenger
