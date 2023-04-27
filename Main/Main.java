@@ -126,7 +126,7 @@ public class Main
         String destination;
         scnr.nextLine();
         do{
-        try{
+        
         
             System.out.println("Please select a where you will be departing from: ");
             System.out.println(map.vertices());
@@ -136,14 +136,11 @@ public class Main
             destination = scnr.nextLine();
             
         
-        v1 = findVertex(destination, map);
-        v2 = findVertex(departure, map);
+            v1 = findVertex(destination, map);
+            v2 = findVertex(departure, map);
             
-        }catch(InputMismatchException e)
-        {
-            System.out.println("Sorry please enter one of the selections above.");
-        }
-    }while((v1 == null || v2 == null) && (v1 == null && v2 == null));
+       
+        }while((v1 == null || v2 == null) && (v1 == null && v2 == null));
 
         System.out.println(p.findShortestPath(map, v2, v1));
 
