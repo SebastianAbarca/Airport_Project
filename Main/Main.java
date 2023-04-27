@@ -58,10 +58,10 @@ public class Main
     static Flight ilmarAirlines = new Flight("Madrid", "Cairo", 3623, 4.35);
     static Flight USAirAir = new Flight("Paris", "Cairo", 4284, 4.20);
     static Flight TDFly = new Flight("Cairo", "Shanghai", 8532, 15.40);
-    static Flight KFlights = new Flight("Cairo", "New Delhi", 9434, 8.20);
-    static Flight JPAir = new Flight("Tokyo", "New Delhi", 1462, 7.50);
+    static Flight KFlights = new Flight("Cairo", "New Dehli", 9434, 8.20);
+    static Flight JPAir = new Flight("Tokyo", "New Dehli", 1462, 7.50);
     static Flight TokyoFlights = new Flight("Tokyo", "Shanghai", 3452, 2.55);
-    static Flight ShangHeight = new Flight("Shanghai", "New Delhi", 4831, 9.35);
+    static Flight ShangHeight = new Flight("Shanghai", "New Dehli", 4831, 9.35);
     static Flight[] allFlights = {nakondaAirlines, aMerryCano, sebby,juanNa,birdie,eronda,ilmarAirlines,USAirAir
             ,TDFly,KFlights,JPAir,TokyoFlights,ShangHeight};
 
@@ -76,8 +76,9 @@ public class Main
         AVLtree tree = new AVLtree();
         menu(map,tree,p);
     } 
-
-    public static void menu(GraphExtended map,AVLtree tree, Paths p){
+    static Scanner scnr = new Scanner(System.in);
+    public static void menu(GraphExtended map,AVLtree tree, Paths p)
+    {
         Scanner scnr = new Scanner(System.in);
         boolean flag = false;
         int input = -1;
@@ -92,17 +93,27 @@ public class Main
             System.out.println("7.add flight");
             System.out.println("8.remove flight");
             System.out.println("9.Show flight information");
+            System.out.println("10. Exit");
             input = scnr.nextInt();
+            if (input <= 10 && input >= 1) {
+                swi(input, map, tree, p);
+            }
+            else
+            {
+                System.out.println("Please try again using numbers 1 through 10");
+            }
             flag = true;
 
         }catch(InputMismatchException e){
-            System.out.println("please try again using numbers 1 through 9");
+            System.out.println("please try again using numbers 1 through 10");
             flag = false;
             scnr.next();
         }
     }while(flag == false);
+    }
 
-
+    public static void swi(int input, GraphExtended map, AVLtree tree, Paths p)
+    {
     switch(input){
         case 1:
             map.showMap();
@@ -185,8 +196,8 @@ public class Main
 
             break;
         case 7:
-        
-           // map.addFlight();
+            System.out.println("Hello what is a flight you would like to add to our catalogue");
+                addFlight(map);
             break;
         case 8:
          
@@ -196,11 +207,13 @@ public class Main
          
             showFlightList(flyFo);
             break;
+        case 10:
+            System.exit(0);
         
     }
 
     }
-
+    
 
     public static void showFlightList(HashMap<String, Flight> flytfo)
     {
@@ -212,6 +225,182 @@ public class Main
         }
 
     }
+    public static void addFlight(GraphExtended g)
+    {
+        String airline;
+        String departure = "Not here";
+        String destination = "nope";
+        Vertex cityNew;
+        Vertex citySelect;
+        double time;
+        int count = 0;
+        boolean city = false;
+        boolean tryCatch = false;
+        boolean tryCatch2 = false;
+        int timeNew = 0;
+        System.out.println("What airline manages this flight");
+        airline = scnr.nextLine();
+        do{
+            try{
+                System.out.println("""
+                        Which city is it departing from?
+                        Miami (MI)
+                        Madrid (MD)
+                        los Angeles (LA)
+                        Buenos Aires (BA)
+                        Tokyo (TK)
+                        Paris (P)
+                        Cairo (CO)
+                        Shanghai (SH)
+                        New Dehli (ND) 
+                        Please type using the 2 letter code next to the location""");
+                while(!city) 
+                {
+                    departure = scnr.nextLine();
+                    if(departure.equalsIgnoreCase("mi") || departure.equalsIgnoreCase("md")
+                    || departure.equalsIgnoreCase("la") || departure.equalsIgnoreCase("BA")
+                    || departure.equalsIgnoreCase("TK") || departure.equalsIgnoreCase("P")
+                    || departure.equalsIgnoreCase("CO") || departure.equalsIgnoreCase("SH")
+                    || departure.equalsIgnoreCase("ND"))
+                    {
+                        city = true;
+                        if(departure.equalsIgnoreCase("mi"))
+                        {
+                            departure = "Miami";
+                        }
+                        else if(departure.equalsIgnoreCase("md"))
+                        {
+                            departure = "Madrid";
+                        }
+                        else if(departure.equalsIgnoreCase("la"))
+                        {
+                            departure = "Los Angeles";
+                        }
+                        else if(departure.equalsIgnoreCase("ba"))
+                        {
+                            departure = "Buenos Aires";
+                        }
+                        else if(departure.equalsIgnoreCase("TK"))
+                        {
+                            departure = "Tokyo";
+                        }
+                        else if(departure.equalsIgnoreCase("P"))
+                        {
+                            departure = "Paris";
+                        }
+                        else if(departure.equalsIgnoreCase("CO"))
+                        {
+                            departure = "Cairo";
+                        }
+                        else if(departure.equalsIgnoreCase("sh"))
+                        {
+                            departure = "Shanghai";
+                        }
+                        else if(departure.equalsIgnoreCase("nd"))
+                        {
+                            departure = "New Dehli";
+                        }
+                    }
+                    if(!city)
+                    {
+                        System.out.println("These are not valid cities");
+                    }
+                }
+
+            }catch(InputMismatchException e)
+            {
+                System.out.println("Sorry please enter a string.");
+            }
+        }while(!city);
+        do{
+            try{
+                System.out.println("""
+                        Which city is it departing from?
+                        Miami (MI)
+                        Madrid (MD)
+                        los Angeles (LA)
+                        Buenos Aires (BA)
+                        Tokyo (TK)
+                        Paris (P)
+                        Cairo (CO)
+                        Shanghai (SH)
+                        New Dehli (ND) 
+                        Please type using the 2 letter code next to the location""");
+                while(!city) 
+                {
+                    destination = scnr.nextLine();
+                    if(destination.equalsIgnoreCase("mi") || destination.equalsIgnoreCase("md")
+                    || destination.equalsIgnoreCase("la") || destination.equalsIgnoreCase("BA")
+                    || destination.equalsIgnoreCase("TK") || destination.equalsIgnoreCase("P")
+                    || destination.equalsIgnoreCase("CO") || destination.equalsIgnoreCase("SH")
+                    || destination.equalsIgnoreCase("ND"))
+                    {
+                        city = true;
+                        if(destination.equalsIgnoreCase("mi"))
+                        {
+                            destination = "Miami";
+                        }
+                        else if(destination.equalsIgnoreCase("md"))
+                        {
+                            destination = "Madrid";
+                        }
+                        else if(destination.equalsIgnoreCase("la"))
+                        {
+                            destination = "Los Angeles";
+                        }
+                        else if(destination.equalsIgnoreCase("ba"))
+                        {
+                            destination = "Buenos Aires";
+                        }
+                        else if(destination.equalsIgnoreCase("TK"))
+                        {
+                            destination = "Tokyo";
+                        }
+                        else if(destination.equalsIgnoreCase("P"))
+                        {
+                            destination = "Paris";
+                        }
+                        else if(destination.equalsIgnoreCase("CO"))
+                        {
+                            destination = "Cairo";
+                        }
+                        else if(destination.equalsIgnoreCase("sh"))
+                        {
+                            destination = "Shanghai";
+                        }
+                        else if(destination.equalsIgnoreCase("nd"))
+                        {
+                            destination = "New Dehli";
+                        }
+                    }
+                    if(!city)
+                    {
+                        System.out.println("These are not valid cities");
+                    }
+                    for (HashMap.Entry<String, Flight> entry : flyFo.entrySet()) 
+                    {
+            
+                        Flight value = entry.getValue();
+                        String deppy = value.getDeparture();
+                        String desty = value.getDestination();
+                        if(deppy == departure && desty == destination)
+                        {
+                            city = false;
+                        }
+                    }
+                    if(destination.equals(departure))
+                    {
+                        city = false;
+                        System.out.println("These 2 are the same city try again");
+                    }
+                }
+
+            }catch(InputMismatchException e)
+            {
+                System.out.println("Sorry please enter a string.");
+            }
+        }while(!city);
+        }
     public static Vertex findVertex(String string, GraphExtended g)
     {
         Vertex v;
