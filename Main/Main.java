@@ -97,11 +97,15 @@ public class Main
             if (input <= 10 && input >= 1) {
                 swi(input, map, tree, p);
             }
+            else if(input == 10)
+            {
+                flag = true;
+            }
             else
             {
                 System.out.println("Please try again using numbers 1 through 10");
             }
-            flag = true;
+            
 
         }catch(InputMismatchException e){
             System.out.println("please try again using numbers 1 through 10");
@@ -403,6 +407,7 @@ public class Main
             }
         }while(!city);
         }
+
     public static Vertex findVertex(String string, GraphExtended g)
     {
         Vertex v;

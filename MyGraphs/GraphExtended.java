@@ -4,7 +4,7 @@ import java.util.List;
 
 public class GraphExtended extends GraphAbstract 
 {
-    public GraphExtended(List vertices, List edges) {
+    public GraphExtended(List<Vertex> vertices, List<Edge> edges) {
         super(vertices, edges);
     };
 
@@ -47,7 +47,7 @@ public class GraphExtended extends GraphAbstract
 
     public void showMap()
     {
-        List edges = edges();
+        List<Edge> edges = edges();
 
         for(int i = 0; i < edges.size(); i++)
         {

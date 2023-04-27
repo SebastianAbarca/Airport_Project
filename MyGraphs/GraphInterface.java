@@ -6,5 +6,5 @@ public interface GraphInterface {
 
     public List<Edge> edges();
 
-    public List incidentEdges(Vertex v);
+    public List<Edge> incidentEdges(Vertex v);
 }
