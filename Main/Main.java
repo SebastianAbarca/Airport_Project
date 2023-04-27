@@ -64,166 +64,173 @@ public class Main
     static Flight[] allFlights = {nakondaAirlines, aMerryCano, sebby,juanNa,birdie,eronda,ilmarAirlines,USAirAir
             ,TDFly,KFlights,JPAir,TokyoFlights,ShangHeight};
 
-    public static void main(String[] args)
-    {
-        for(int i = 0;i< allFlights.length;i++)
-        {
+    public static void main(String[] args){
+        for(int i = 0;i< allFlights.length;i++){
             flyFo.put(allFlights[i].getDeparture(), allFlights[i]);
         }
         GraphExtended map = new GraphExtended(vertices, edges);
+
         Paths p = new Paths();
+
         AVLtree tree = new AVLtree();
+
         menu(map,tree,p);
     } 
+
     static Scanner scnr = new Scanner(System.in);
-    public static void menu(GraphExtended map,AVLtree tree, Paths p)
-    {
-        Scanner scnr = new Scanner(System.in);
+    public static void menu(GraphExtended map,AVLtree tree, Paths p){
+        
         boolean flag = false;
         int input = -1;
     do{
         try{
-            System.out.println("1.Show map");
-            System.out.println("2.add passenger");
-            System.out.println("3.Print shortest path");
-            System.out.println("4.print passenger list");
-            System.out.println("5.remove passenger");
-            System.out.println("6.find passenger");
-            System.out.println("7.add flight");
-            System.out.println("8.remove flight");
-            System.out.println("9.Show flight information");
-            System.out.println("10. Exit");
-            input = scnr.nextInt();
-            if (input <= 10 && input >= 1) {
-                swi(input, map, tree, p);
-            }
-            else if(input == 10)
-            {
-                flag = true;
-            }
-            else
-            {
-                System.out.println("Please try again using numbers 1 through 10");
-            }
-            
+                System.out.println("1.Show map");
+                System.out.println("2.add passenger");
+                System.out.println("3.Print shortest path");
+                System.out.println("4.print passenger list");
+                System.out.println("5.remove passenger");
+                System.out.println("6.find passenger");
+                System.out.println("7.add flight");
+                System.out.println("8.remove flight");
+                System.out.println("9.Show flight information");
+                System.out.println("10. Exit");
+                input = scnr.nextInt();
 
-        }catch(InputMismatchException e){
-            System.out.println("please try again using numbers 1 through 10");
-            flag = false;
-            scnr.next();
-        }
-    }while(flag == false);
+                if(input <= 10 && input >= 1){
+                    swi(input, map, tree, p);
+                }
+                else if(input == 10){
+                    flag = true;
+                }else{
+                    System.out.println("Please try again using numbers 1 through 10");
+                }
+            
+            }catch(InputMismatchException e){
+                System.out.println("please try again using numbers 1 through 10");
+                flag = false;
+                scnr.next();
+            }
+        }while(flag == false);
     }
 
-    public static void swi(int input, GraphExtended map, AVLtree tree, Paths p)
-    {
-    switch(input){
-        case 1:
-            map.showMap();
+    public static void swi(int input, GraphExtended map, AVLtree tree, Paths p){
+        switch(input){
+            case 1:
+                map.showMap();
+                System.out.println();
+            break;
+
+            case 2:
+                int a;
+
+                System.out.println("Here are the passenger that are available to be added please select one.");
+
+                ArrayList<Passenger> myList = Passenger.createPassengers();
+
+                for(int i = 0; i < myList.size();i++){
+                    System.out.println(i+1 + ". " + myList.get(i));
+                }
+                a = scnr.nextInt();
+
+                tree.add(myList.get(a));
+
+                System.out.println();
+            break;
+
+            case 3: // find shortest path between 2 cities
+                Vertex v1 = null;
+                Vertex v2 = null;
+                String departure;
+                String destination;
+                scnr.nextLine();
             
-            break;
-        case 2:
-            int a;
+            do{
+                System.out.println("Please select a where you will be departing from: ");
+                System.out.println(map.vertices());
+                departure = scnr.nextLine();
 
-            System.out.println("Here are the passenger that are available to be added please select one.");
-
-            ArrayList<Passenger> myList = Passenger.createPassengers();
-
-            for(int i = 0; i < myList.size();i++){
-                System.out.println(i+1 + ". " + myList.get(i));
-            }
-            a = scnr.nextInt();
-
-            tree.add(myList.get(a));
-
-            break;
-
-        case 3: // find shortest path between 2 cities
-            Vertex v1 = null;
-            Vertex v2 = null;
-            String departure;
-            String destination;
-            scnr.nextLine();
+                System.out.println("Please select a destination: ");
+                System.out.println(map.vertices());
+                destination = scnr.nextLine();
             
-        do{
-            System.out.println("Please select a where you will be departing from: ");
-            System.out.println(map.vertices());
-            departure = scnr.nextLine();
-
-            System.out.println("Please select a destination: ");
-            System.out.println(map.vertices());
-            destination = scnr.nextLine();
+                v1 = findVertex(destination, map);
+                v2 = findVertex(departure, map);
             
-            v1 = findVertex(destination, map);
-            v2 = findVertex(departure, map);
-            
-        }while((v1 == null || v2 == null) && (v1 == null && v2 == null));
+            }while((v1 == null || v2 == null) && (v1 == null && v2 == null));
 
-            System.out.println(p.findShortestPath(map, v2, v1));
+                System.out.println(p.findShortestPath(map, v2, v1));
 
+                System.out.println();
             break;
 
-        case 4: // add passenger
-            tree.printTree();
+            case 4: // add passenger
+                tree.printTree();
+                System.out.println();
             break;
 
-        case 5: // remove passenger
-            int b;
+            case 5: // remove passenger
+                int b;
 
-            System.out.println("Here are the passenger that are available to be removed please select one.");
+                System.out.println("Here are the passenger that are available to be removed please select one.");
 
-            ArrayList<Passenger> myList2 = Passenger.createPassengers();
+                ArrayList<Passenger> myList2 = Passenger.createPassengers();
 
-            for(int i = 0; i < myList2.size();i++){
-                System.out.println(i+1 + ". " + myList2.get(i));
-            }
+                for(int i = 0; i < myList2.size();i++){
+                    System.out.println(i+1 + ". " + myList2.get(i));
+                }
 
-            b = scnr.nextInt();
+                b = scnr.nextInt();
 
-            tree.remove(myList2.get(b));
+                tree.remove(myList2.get(b));
 
+                System.out.println();
             break;
 
-        case 6: // find passenger
-            int c;
+            case 6: // find passenger
+                int c;
 
-            System.out.println("Here are the passenger that are available to be removed please select one.");
+                System.out.println("Here are the passenger that are available to be removed please select one.");
 
-            ArrayList<Passenger> myList3 = Passenger.createPassengers();
+                ArrayList<Passenger> myList3 = Passenger.createPassengers();
 
-            for(int i = 0; i < myList3.size();i++){
-                System.out.println(i+1 + ". " + myList3.get(i));
-            }
+                for(int i = 0; i < myList3.size();i++){
+                    System.out.println(i+1 + ". " + myList3.get(i));
+                }
 
-            c = scnr.nextInt();
+                c = scnr.nextInt();
 
-            tree.find(myList3.get(c));
+                tree.find(myList3.get(c));
 
+                System.out.println();
             break;
             
-        case 7:
-            System.out.println("Hello what is a flight you would like to add to our catalogue");
+            case 7:
+                System.out.println("Hello what is a flight you would like to add to our catalogue");
                 addFlight(map);
+                System.out.println();
             break;
-        case 8:
+
+            case 8:
          
            // map.removeFlight();
             break;
-        case 9:
-         
-            showFlightList(flyFo);
+
+            case 9:
+                showFlightList(flyFo);
+                System.out.println();
             break;
-        case 10:
-            System.exit(0);
+
+            case 10:
+                System.exit(0);
+            break;
         
-    }
+        }
 
     }
     
 
-    public static void showFlightList(HashMap<String, Flight> flytfo)
-    {
-        for (Map.Entry<String, Flight> entry : flytfo.entrySet()) {
+    public static void showFlightList(HashMap<String, Flight> flytfo){
+        for (Map.Entry<String, Flight> entry : flytfo.entrySet()){
             Flight value = entry.getValue();
 
             System.out.println("Flight #" + value.getFlightnum() + ": Departure(" + value.getDeparture() + 
@@ -231,8 +238,8 @@ public class Main
         }
 
     }
-    public static void addFlight(GraphExtended g)
-    {
+
+    public static void addFlight(GraphExtended g){
         String airline;
         String departure = "Not here";
         String destination = "nope";
@@ -246,6 +253,7 @@ public class Main
         int timeNew = 0;
         System.out.println("What airline manages this flight");
         airline = scnr.nextLine();
+
         do{
             try{
                 System.out.println("""
@@ -260,64 +268,46 @@ public class Main
                         Shanghai (SH)
                         New Dehli (ND) 
                         Please type using the 2 letter code next to the location""");
-                while(!city) 
-                {
+
+                while(!city){
                     departure = scnr.nextLine();
                     if(departure.equalsIgnoreCase("mi") || departure.equalsIgnoreCase("md")
-                    || departure.equalsIgnoreCase("la") || departure.equalsIgnoreCase("BA")
-                    || departure.equalsIgnoreCase("TK") || departure.equalsIgnoreCase("P")
-                    || departure.equalsIgnoreCase("CO") || departure.equalsIgnoreCase("SH")
-                    || departure.equalsIgnoreCase("ND"))
-                    {
-                        city = true;
-                        if(departure.equalsIgnoreCase("mi"))
-                        {
+                        || departure.equalsIgnoreCase("la") || departure.equalsIgnoreCase("BA")
+                        || departure.equalsIgnoreCase("TK") || departure.equalsIgnoreCase("P")
+                        || departure.equalsIgnoreCase("CO") || departure.equalsIgnoreCase("SH")
+                        || departure.equalsIgnoreCase("ND")){
+                            city = true;
+
+                        if(departure.equalsIgnoreCase("mi")){
                             departure = "Miami";
-                        }
-                        else if(departure.equalsIgnoreCase("md"))
-                        {
+                        }else if(departure.equalsIgnoreCase("md")){
                             departure = "Madrid";
-                        }
-                        else if(departure.equalsIgnoreCase("la"))
-                        {
+                        }else if(departure.equalsIgnoreCase("la")){
                             departure = "Los Angeles";
-                        }
-                        else if(departure.equalsIgnoreCase("ba"))
-                        {
+                        }else if(departure.equalsIgnoreCase("ba")){
                             departure = "Buenos Aires";
-                        }
-                        else if(departure.equalsIgnoreCase("TK"))
-                        {
+                        }else if(departure.equalsIgnoreCase("TK")){
                             departure = "Tokyo";
-                        }
-                        else if(departure.equalsIgnoreCase("P"))
-                        {
+                        }else if(departure.equalsIgnoreCase("P")){
                             departure = "Paris";
-                        }
-                        else if(departure.equalsIgnoreCase("CO"))
-                        {
+                        }else if(departure.equalsIgnoreCase("CO")){
                             departure = "Cairo";
-                        }
-                        else if(departure.equalsIgnoreCase("sh"))
-                        {
+                        }else if(departure.equalsIgnoreCase("sh")){
                             departure = "Shanghai";
-                        }
-                        else if(departure.equalsIgnoreCase("nd"))
-                        {
+                        }else if(departure.equalsIgnoreCase("nd")){
                             departure = "New Dehli";
                         }
                     }
-                    if(!city)
-                    {
+                    if(!city){
                         System.out.println("These are not valid cities");
                     }
                 }
 
-            }catch(InputMismatchException e)
-            {
+            }catch(InputMismatchException e){
                 System.out.println("Sorry please enter a string.");
             }
         }while(!city);
+
         do{
             try{
                 System.out.println("""
@@ -332,81 +322,62 @@ public class Main
                         Shanghai (SH)
                         New Dehli (ND) 
                         Please type using the 2 letter code next to the location""");
-                while(!city) 
-                {
+                while(!city) {
                     destination = scnr.nextLine();
+
                     if(destination.equalsIgnoreCase("mi") || destination.equalsIgnoreCase("md")
-                    || destination.equalsIgnoreCase("la") || destination.equalsIgnoreCase("BA")
-                    || destination.equalsIgnoreCase("TK") || destination.equalsIgnoreCase("P")
-                    || destination.equalsIgnoreCase("CO") || destination.equalsIgnoreCase("SH")
-                    || destination.equalsIgnoreCase("ND"))
-                    {
-                        city = true;
-                        if(destination.equalsIgnoreCase("mi"))
-                        {
+                        || destination.equalsIgnoreCase("la") || destination.equalsIgnoreCase("BA")
+                        || destination.equalsIgnoreCase("TK") || destination.equalsIgnoreCase("P")
+                        || destination.equalsIgnoreCase("CO") || destination.equalsIgnoreCase("SH")
+                        || destination.equalsIgnoreCase("ND")){
+                            city = true;
+
+                        if(destination.equalsIgnoreCase("mi")){
                             destination = "Miami";
-                        }
-                        else if(destination.equalsIgnoreCase("md"))
-                        {
+                        }else if(destination.equalsIgnoreCase("md")){
                             destination = "Madrid";
-                        }
-                        else if(destination.equalsIgnoreCase("la"))
-                        {
+                        }else if(destination.equalsIgnoreCase("la")){
                             destination = "Los Angeles";
-                        }
-                        else if(destination.equalsIgnoreCase("ba"))
-                        {
+                        }else if(destination.equalsIgnoreCase("ba")){
                             destination = "Buenos Aires";
-                        }
-                        else if(destination.equalsIgnoreCase("TK"))
-                        {
+                        }else if(destination.equalsIgnoreCase("TK")){
                             destination = "Tokyo";
-                        }
-                        else if(destination.equalsIgnoreCase("P"))
-                        {
+                        }else if(destination.equalsIgnoreCase("P")){
                             destination = "Paris";
-                        }
-                        else if(destination.equalsIgnoreCase("CO"))
-                        {
+                        }else if(destination.equalsIgnoreCase("CO")){
                             destination = "Cairo";
-                        }
-                        else if(destination.equalsIgnoreCase("sh"))
-                        {
+                        }else if(destination.equalsIgnoreCase("sh")){
                             destination = "Shanghai";
-                        }
-                        else if(destination.equalsIgnoreCase("nd"))
-                        {
+                        }else if(destination.equalsIgnoreCase("nd")){
                             destination = "New Dehli";
                         }
                     }
-                    if(!city)
-                    {
+
+                    if(!city){
                         System.out.println("These are not valid cities");
                     }
-                    for (HashMap.Entry<String, Flight> entry : flyFo.entrySet()) 
-                    {
+
+                    for (HashMap.Entry<String, Flight> entry : flyFo.entrySet()) {
             
                         Flight value = entry.getValue();
                         String deppy = value.getDeparture();
                         String desty = value.getDestination();
-                        if(deppy == departure && desty == destination)
-                        {
+                        if(deppy == departure && desty == destination){
                             city = false;
                         }
                     }
-                    if(destination.equals(departure))
-                    {
+
+                    if(destination.equals(departure)){
                         city = false;
                         System.out.println("These 2 are the same city try again");
                     }
                 }
 
-            }catch(InputMismatchException e)
-            {
+            }catch(InputMismatchException e){
                 System.out.println("Sorry please enter a string.");
             }
         }while(!city);
-        }
+    }
 
     public static Vertex findVertex(String string, GraphExtended g)
     {
