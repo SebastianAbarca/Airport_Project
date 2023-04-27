@@ -241,11 +241,14 @@ public class Main
     }
 
     public static void addFlight(GraphExtended g){
+        String airline;
         String departure = "Not here";
         String destination = "nope";
         double time;
         boolean city = false;
         System.out.println("What airline manages this flight");
+        airline = scnr.nextLine();
+
         do{
             try{
                 System.out.println("""
@@ -260,64 +263,46 @@ public class Main
                         Shanghai (SH)
                         New Dehli (ND) 
                         Please type using the 2 letter code next to the location""");
-                while(!city) 
-                {
+
+                while(!city){
                     departure = scnr.nextLine();
                     if(departure.equalsIgnoreCase("mi") || departure.equalsIgnoreCase("md")
-                    || departure.equalsIgnoreCase("la") || departure.equalsIgnoreCase("BA")
-                    || departure.equalsIgnoreCase("TK") || departure.equalsIgnoreCase("P")
-                    || departure.equalsIgnoreCase("CO") || departure.equalsIgnoreCase("SH")
-                    || departure.equalsIgnoreCase("ND"))
-                    {
-                        city = true;
-                        if(departure.equalsIgnoreCase("mi"))
-                        {
+                        || departure.equalsIgnoreCase("la") || departure.equalsIgnoreCase("BA")
+                        || departure.equalsIgnoreCase("TK") || departure.equalsIgnoreCase("P")
+                        || departure.equalsIgnoreCase("CO") || departure.equalsIgnoreCase("SH")
+                        || departure.equalsIgnoreCase("ND")){
+                            city = true;
+
+                        if(departure.equalsIgnoreCase("mi")){
                             departure = "Miami";
-                        }
-                        else if(departure.equalsIgnoreCase("md"))
-                        {
+                        }else if(departure.equalsIgnoreCase("md")){
                             departure = "Madrid";
-                        }
-                        else if(departure.equalsIgnoreCase("la"))
-                        {
+                        }else if(departure.equalsIgnoreCase("la")){
                             departure = "Los Angeles";
-                        }
-                        else if(departure.equalsIgnoreCase("ba"))
-                        {
+                        }else if(departure.equalsIgnoreCase("ba")){
                             departure = "Buenos Aires";
-                        }
-                        else if(departure.equalsIgnoreCase("TK"))
-                        {
+                        }else if(departure.equalsIgnoreCase("TK")){
                             departure = "Tokyo";
-                        }
-                        else if(departure.equalsIgnoreCase("P"))
-                        {
+                        }else if(departure.equalsIgnoreCase("P")){
                             departure = "Paris";
-                        }
-                        else if(departure.equalsIgnoreCase("CO"))
-                        {
+                        }else if(departure.equalsIgnoreCase("CO")){
                             departure = "Cairo";
-                        }
-                        else if(departure.equalsIgnoreCase("sh"))
-                        {
+                        }else if(departure.equalsIgnoreCase("sh")){
                             departure = "Shanghai";
-                        }
-                        else if(departure.equalsIgnoreCase("nd"))
-                        {
+                        }else if(departure.equalsIgnoreCase("nd")){
                             departure = "New Dehli";
                         }
                     }
-                    if(!city)
-                    {
+                    if(!city){
                         System.out.println("These are not valid cities");
                     }
                 }
 
-            }catch(InputMismatchException e)
-            {
+            }catch(InputMismatchException e){
                 System.out.println("Sorry please enter a string.");
             }
         }while(!city);
+
         do{
             try{
                 System.out.println("""
@@ -332,87 +317,69 @@ public class Main
                         Shanghai (SH)
                         New Dehli (ND) 
                         Please type using the 2 letter code next to the location""");
-                while(!city) 
-                {
+                while(!city) {
                     destination = scnr.nextLine();
+
                     if(destination.equalsIgnoreCase("mi") || destination.equalsIgnoreCase("md")
-                    || destination.equalsIgnoreCase("la") || destination.equalsIgnoreCase("BA")
-                    || destination.equalsIgnoreCase("TK") || destination.equalsIgnoreCase("P")
-                    || destination.equalsIgnoreCase("CO") || destination.equalsIgnoreCase("SH")
-                    || destination.equalsIgnoreCase("ND"))
-                    {
-                        city = true;
-                        if(destination.equalsIgnoreCase("mi"))
-                        {
+                        || destination.equalsIgnoreCase("la") || destination.equalsIgnoreCase("BA")
+                        || destination.equalsIgnoreCase("TK") || destination.equalsIgnoreCase("P")
+                        || destination.equalsIgnoreCase("CO") || destination.equalsIgnoreCase("SH")
+                        || destination.equalsIgnoreCase("ND")){
+                            city = true;
+
+                        if(destination.equalsIgnoreCase("mi")){
                             destination = "Miami";
-                        }
-                        else if(destination.equalsIgnoreCase("md"))
-                        {
+                        }else if(destination.equalsIgnoreCase("md")){
                             destination = "Madrid";
-                        }
-                        else if(destination.equalsIgnoreCase("la"))
-                        {
+                        }else if(destination.equalsIgnoreCase("la")){
                             destination = "Los Angeles";
-                        }
-                        else if(destination.equalsIgnoreCase("ba"))
-                        {
+                        }else if(destination.equalsIgnoreCase("ba")){
                             destination = "Buenos Aires";
-                        }
-                        else if(destination.equalsIgnoreCase("TK"))
-                        {
+                        }else if(destination.equalsIgnoreCase("TK")){
                             destination = "Tokyo";
-                        }
-                        else if(destination.equalsIgnoreCase("P"))
-                        {
+                        }else if(destination.equalsIgnoreCase("P")){
                             destination = "Paris";
-                        }
-                        else if(destination.equalsIgnoreCase("CO"))
-                        {
+                        }else if(destination.equalsIgnoreCase("CO")){
                             destination = "Cairo";
-                        }
-                        else if(destination.equalsIgnoreCase("sh"))
-                        {
+                        }else if(destination.equalsIgnoreCase("sh")){
                             destination = "Shanghai";
-                        }
-                        else if(destination.equalsIgnoreCase("nd"))
-                        {
+                        }else if(destination.equalsIgnoreCase("nd")){
                             destination = "New Dehli";
                         }
                     }
-                    if(!city)
-                    {
+
+                    if(!city){
                         System.out.println("These are not valid cities");
                     }
-                    
-                    if(destination.equals(departure))
-                    {
-                        city = false;
-                        System.out.println("These 2 are the same city try again");
-                    }
-                    for (HashMap.Entry<String, Flight> entry : flyFo.entrySet()) 
-                    {
+
+                    for (HashMap.Entry<String, Flight> entry : flyFo.entrySet()) {
             
                         Flight value = entry.getValue();
                         String deppy = value.getDeparture();
                         String desty = value.getDestination();
-                        if(deppy == departure && desty == destination)
-                        {
+                        if(deppy == departure && desty == destination){
                             city = false;
-                            System.out.println("This already exists in a Hashmap");
                         }
+                    }
+
+                    if(destination.equals(departure)){
+                        city = false;
+                        System.out.println("These 2 are the same city try again");
                     }
                 }
 
-            }catch(InputMismatchException e)
-            {
+            }catch(InputMismatchException e){
                 System.out.println("Sorry please enter a string.");
             }
         }while(!city);
+
         int flightNum =  (int)Math.floor(Math.random() *(9999 - 100 + 1) + 100);
         System.out.println("How long would this flight take in hours? (Please type as a double)");
         time = scnr.nextDouble();
+
         Flight h1 = new Flight(departure, destination, flightNum, time);
         flyFo.put(departure, h1);
+        
         System.out.println("Congratulations you have added your new flight.");
     }
 
