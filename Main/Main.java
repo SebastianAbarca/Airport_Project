@@ -3,7 +3,6 @@ import MyGraphs.*;
 import Tree.*;
 import Paths.*;
 import Objects.*;
-
 import java.util.*;
 
 /*
@@ -134,35 +133,36 @@ public class Main
             tree.add(myList.get(a));
 
             break;
+
         case 3: // find shortest path between 2 cities
-        Vertex v1 = null;
-        Vertex v2 = null;
-        String departure;
-        String destination;
-        scnr.nextLine();
+            Vertex v1 = null;
+            Vertex v2 = null;
+            String departure;
+            String destination;
+            scnr.nextLine();
+            
         do{
-        
-        
             System.out.println("Please select a where you will be departing from: ");
             System.out.println(map.vertices());
             departure = scnr.nextLine();
+
             System.out.println("Please select a destination: ");
             System.out.println(map.vertices());
             destination = scnr.nextLine();
             
-        
             v1 = findVertex(destination, map);
             v2 = findVertex(departure, map);
             
-       
         }while((v1 == null || v2 == null) && (v1 == null && v2 == null));
 
-        System.out.println(p.findShortestPath(map, v2, v1));
+            System.out.println(p.findShortestPath(map, v2, v1));
 
             break;
+
         case 4: // add passenger
             tree.printTree();
             break;
+
         case 5: // remove passenger
             int b;
 
@@ -179,6 +179,7 @@ public class Main
             tree.remove(myList2.get(b));
 
             break;
+
         case 6: // find passenger
             int c;
 
@@ -195,6 +196,7 @@ public class Main
             tree.find(myList3.get(c));
 
             break;
+            
         case 7:
             System.out.println("Hello what is a flight you would like to add to our catalogue");
                 addFlight(map);
